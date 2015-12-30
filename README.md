@@ -1,4 +1,4 @@
-# NYU CS9053 - Template
+# NYU CS9053 - Spring 2016
 
 ## Introduction to Java
 

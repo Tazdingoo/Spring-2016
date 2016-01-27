@@ -94,6 +94,8 @@ The process for viewing and submitting homework assignments is:
 
 __Late submissions are treated as 0__ Submitting an assignment late will not be tolerated in any circumstance. This includes issuing a pull request after the 24 hour deadline of last commit.  If this happens you can use this as your grade which will not be counted.  
 
+__Review__ To encourage code review, mastery of the material and to discourage cheating, each week some students will be selected at random.  Some of the students will review some other of the students homework and explain to me what the code is doing, any mistakes they see and also any well done portions of the code.
+
 __Important__ If any part of this process does not make sense please let me know __ASAP (as soon as possible)__ via e-mail or in the first lecture.
 
 See [Grading](#grading) for dates and overall grade percentage.

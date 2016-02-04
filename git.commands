@@ -21,3 +21,9 @@ https://help.github.com/articles/error-permission-denied-publickey/
 If you still cannot figure out the git/github issue email me for assistance.
 
 
+Other helpful git commands:
+// to see all commits you've done
+git log
+// instead of adding a file, if you need to remove a file
+git rm
+

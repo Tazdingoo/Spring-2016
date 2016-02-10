@@ -52,7 +52,10 @@ public class PolylineEncoder {
               //System.out.println(binaryValue);
     	int[][] chunks = binaryToChunks(binaryValue);
     	int[] decimalValue = chunksToDecimal(chunks);
-              //System.out.println(decimalValue[0]);
+      //for (int i=0;i<decimalValue.length;i++) {
+        //System.out.println(decimalValue[i]);
+      //}
+              //System.out.println(' ');
               //System.out.println(decimalValue[1]);
               //System.out.println(decimalValue[2]);
               //System.out.println(decimalValue[3]);
@@ -128,9 +131,9 @@ public class PolylineEncoder {
     	for (int output : decimal) {
         	sb.append(Character.toChars(output));
               char[] outputChar = Character.toChars(output);
-              if (outputChar[0]=='\\'){
-                sb.append(Character.toChars(output));
-              }	
+              //if (outputChar[0]=='\\'){
+                //sb.append(Character.toChars(output));
+              //}	
     	}
        //System.out.println(sb.toString());
     	return sb.toString();

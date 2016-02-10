@@ -1,5 +1,5 @@
 package edu.nyu.cs9053.homework2;
-
+//import static org.junit.Assert.assertEquals;
 /**
  * User: blangel
  * Date: 8/17/14
@@ -67,6 +67,10 @@ public class Program {
             //System.out.println(lon);
         }
         PolylineEncoder encodePoints = new PolylineEncoder();
+        //String s = encodePoints.encodePolyline(points);
+        //System.out.println("_chxEn`zvN\\\\");
+        //System.out.println(s);
+        //assertEquals("_chxEn`zvN\\\\", encodePoints.encodePolyline(points));
         System.out.println(encodePoints.encodePolyline(points));
     	
     }

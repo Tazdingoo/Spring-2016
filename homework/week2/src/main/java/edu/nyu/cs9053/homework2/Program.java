@@ -8,7 +8,7 @@ package edu.nyu.cs9053.homework2;
 public class Program {
 
     public static void main(String[] args) {
-        //System.out.println(args[0]);
+        //check input format
         try{
             boolean gpsEnter = args[0].equals("gps");
         }
@@ -31,6 +31,13 @@ public class Program {
         }
     }
     private static void gpsMode(String[] args) {
+        try{
+            boolean gpsEnter = args[1].equals("gps");
+        }
+        catch(ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
+            System.out.println("Invalid argument");
+            System.exit(0);
+            }
         //split input
         int numberOfPoints = args.length-1;
         Gps[] points = new Gps[numberOfPoints];
@@ -64,6 +71,14 @@ public class Program {
     }
 
     private static void annuityMode(String[] args) {
+        //check input format
+        try{
+            boolean gpsEnter = args[1].equals("gps");
+        }
+        catch(ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
+            System.out.println("Invalid argument");
+            System.exit(0);
+            }
         //split input
         double[] annuityInput = new double[3];
         int yearsInput;

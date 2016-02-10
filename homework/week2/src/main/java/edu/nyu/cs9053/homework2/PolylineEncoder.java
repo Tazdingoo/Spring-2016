@@ -126,8 +126,13 @@ public class PolylineEncoder {
     private String decimalToASCII(int[] decimal){
     	StringBuffer sb = new StringBuffer();
     	for (int output : decimal) {
-        	sb.append(Character.toChars(output));    		
+        	sb.append(Character.toChars(output));
+              char[] outputChar = Character.toChars(output);
+              if (outputChar[0]=='\\'){
+                sb.append(Character.toChars(output));
+              }	
     	}
+       //System.out.println(sb.toString());
     	return sb.toString();
     }
 

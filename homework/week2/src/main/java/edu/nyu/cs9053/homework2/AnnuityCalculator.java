@@ -33,28 +33,43 @@ public class AnnuityCalculator {
      */
     private static final RoundingMode DEFAULT_ROUNDING_MODE = RoundingMode.HALF_UP;
 
-    public BigDecimal computeFutureValueOfAnnuityIn15Years(double annuityAmount, double annualInterestRateInPercent) {
+    
 
+    public BigDecimal computeFutureValueOfAnnuityIn15Years(double annuityAmount, double annualInterestRateInPercent) {
+        return computeFutureValueOfAnnuity(annuityAmount, annualInterestRateInPercent, 15);
     }
 
     public BigDecimal computeFutureValueOfAnnuityIn30Years(double annuityAmount, double annualInterestRateInPercent) {
-
+        return computeFutureValueOfAnnuity(annuityAmount, annualInterestRateInPercent, 30);
     }
 
     public BigDecimal computeMonthlyCompoundedFutureValueOfAnnuityIn15Years(double annuityAmount, double annualInterestRateInPercent) {
-
+        return computeMonthlyCompoundedFutureValueOfAnnuity(annuityAmount, annualInterestRateInPercent, 15);
     }
 
     public BigDecimal computeMonthlyCompoundedFutureValueOfAnnuityIn30Years(double annuityAmount, double annualInterestRateInPercent) {
-
+        return computeMonthlyCompoundedFutureValueOfAnnuity(annuityAmount, annualInterestRateInPercent, 30);
     }
 
     public BigDecimal computeFutureValueOfAnnuity(double annuityAmount, double annualInterestRateInPercent, int years) {
-
+        BigDecimal annuityAmountBig = new BigDecimal(Double.toString(annuityAmount));
+        BigDecimal annualInterestRateInPercentBig = new BigDecimal(Double.toString(annualInterestRateInPercent));
+        BigDecimal annualInterestRateBig = annualInterestRateInPercentBig.divide(new BigDecimal("100"), DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
+        BigDecimal annualInterestRatePlusOnePowerSubOneBig = ((annualInterestRateBig.add(new BigDecimal("1"))).pow(years)).subtract(new BigDecimal("1"));
+        BigDecimal futureValueOfAnnuity = annuityAmountBig.multiply(annualInterestRatePlusOnePowerSubOneBig.divide(annualInterestRateBig, DEFAULT_SCALE, DEFAULT_ROUNDING_MODE));
+        return futureValueOfAnnuity.setScale(DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
     }
-
     public BigDecimal computeMonthlyCompoundedFutureValueOfAnnuity(double annuityAmount, double annualInterestRateInPercent, int years) {
-
+        BigDecimal annuityAmountBig = new BigDecimal(Double.toString(annuityAmount));
+        BigDecimal annualInterestRateInPercentBig = new BigDecimal(Double.toString(annualInterestRateInPercent));
+        BigDecimal annualInterestRateBig = annualInterestRateInPercentBig.divide(new BigDecimal("100"), DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
+        int power = 12*years;
+        BigDecimal monthlyInterestRateBig = annualInterestRateBig.divide(new BigDecimal("12"), DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
+        BigDecimal monthlyInterestRatePlusOnePowerSubOneBig = ((monthlyInterestRateBig.add(new BigDecimal("1"))).pow(power)).subtract(new BigDecimal("1"));
+        BigDecimal monthlyCompoundedFutureValueOfAnnuity = annuityAmountBig.multiply(monthlyInterestRatePlusOnePowerSubOneBig.divide(monthlyInterestRateBig, DEFAULT_SCALE, DEFAULT_ROUNDING_MODE));
+        return monthlyCompoundedFutureValueOfAnnuity.setScale(DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
     }
+
+
 
 }

@@ -45,7 +45,6 @@ public class Program {
 	    double lat = 0; 
                   double lon = 0;
             String[] latAndLons = args[i+1].split(",");
-            //System.out.println(latAndLons[0]);
 	    int pointDimensions = latAndLons.length;
         //check input format
             try {
@@ -56,21 +55,13 @@ public class Program {
             System.out.println("Invalid argument");
             System.exit(0);
             }
-            //lat = Double.valueOf(latAndLons[0]);
-            //lon = Double.valueOf(latAndLons[1]);
             if (!(lat >= -180 && lat <= 180 && lon >= -180 && lon <= 180 && pointDimensions==2)) {
             System.out.println("Invalid argument");
             System.exit(0);
             }
             points[i] = new Gps(lat,lon);
-            //System.out.println(lat);
-            //System.out.println(lon);
         }
         PolylineEncoder encodePoints = new PolylineEncoder();
-        //String s = encodePoints.encodePolyline(points);
-        //System.out.println("_chxEn`zvN\\\\");
-        //System.out.println(s);
-        //assertEquals("_chxEn`zvN\\\\", encodePoints.encodePolyline(points));
         System.out.println(encodePoints.encodePolyline(points));
     	
     }

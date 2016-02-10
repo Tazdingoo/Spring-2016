@@ -32,7 +32,7 @@ public class Program {
     }
     private static void gpsMode(String[] args) {
         try{
-            boolean gpsEnter = args[1].equals("gps");
+            boolean checkEnter = args[1].equals("gps");
         }
         catch(ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
             System.out.println("Invalid argument");
@@ -42,7 +42,8 @@ public class Program {
         int numberOfPoints = args.length-1;
         Gps[] points = new Gps[numberOfPoints];
         for (int i=0;i<numberOfPoints;i++) {
-	    double lat, lon;
+	    double lat = 0; 
+                  double lon = 0;
             String[] latAndLons = args[i+1].split(",");
             //System.out.println(latAndLons[0]);
 	    int pointDimensions = latAndLons.length;
@@ -55,8 +56,8 @@ public class Program {
             System.out.println("Invalid argument");
             System.exit(0);
             }
-            lat = Double.valueOf(latAndLons[0]);
-            lon = Double.valueOf(latAndLons[1]);
+            //lat = Double.valueOf(latAndLons[0]);
+            //lon = Double.valueOf(latAndLons[1]);
             if (!(lat >= -180 && lat <= 180 && lon >= -180 && lon <= 180 && pointDimensions==2)) {
             System.out.println("Invalid argument");
             System.exit(0);
@@ -73,7 +74,7 @@ public class Program {
     private static void annuityMode(String[] args) {
         //check input format
         try{
-            boolean gpsEnter = args[1].equals("gps");
+            boolean checkEnter = args[1].equals("gps");
         }
         catch(ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
             System.out.println("Invalid argument");

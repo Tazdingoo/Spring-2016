@@ -1,5 +1,5 @@
 package edu.nyu.cs9053.homework3;
-
+import  edu.nyu.cs9053.homework3.metadata.FixMeToo;
 /**
  * User: blangel
  * Date: 8/23/14
@@ -7,17 +7,17 @@ package edu.nyu.cs9053.homework3;
  */
 public class FixMe {
 
-    private String name;
+    private final String name;
 
-    final String secondary;
+    private final String secondary;
 
     public FixMe(String name) {
-	name = name;
+	this(name, "");
     }
 
     public FixMe(String name, String secondary) {
-        name = name;
-        secondary = new FixMeToo(true).analyze(secondary);
+        this.name = name;
+        this.secondary = new FixMeToo(true).analyzeMetadata(secondary);
     }
 
     public FixMe changeName(String name) {
@@ -25,11 +25,11 @@ public class FixMe {
     }
 
     public FixMe changeName(String firstName, String lastName) {
-        return new FixMe(changeName(firstName, lastName), secondary);
+        return new FixMe(changeNameToString(firstName, lastName), secondary);
     }
 
-    public String changeName(String firstName, String lastName) {
-        return String.formatted("%s %s", firstName, lastName);
+    public String changeNameToString(String firstName, String lastName) {
+        return String.format("%s %s", firstName, lastName);
     }
 
 }

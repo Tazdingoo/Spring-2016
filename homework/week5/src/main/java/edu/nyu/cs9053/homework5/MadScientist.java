@@ -7,6 +7,8 @@ package edu.nyu.cs9053.homework5;
  */
 public class MadScientist {
 
+    private static final double DECAY_CONSTANT = 1d;
+
     private final TimeMachine timeMachine;
 
     public MadScientist(TimeMachine timeMachine) {
@@ -18,29 +20,26 @@ public class MadScientist {
         MadScientist madScientist = new MadScientist(new TimeMachine());
         LinearlyTimeTraveler linearlyTimeTraveler = new LinearlyTimeTraveler("LinearMan", 100d);
         DoublyTimeTraveler doublyTimeTraveler = new DoublyTimeTraveler("DoubleMan", 100d);
-        ExpolyTimeTraveler expolyTimeTraveler = new ExpolyTimeTraveler("ExpoMan", 100d, 1d);
+        ExpolyTimeTraveler expolyTimeTraveler = new ExpolyTimeTraveler("ExpoMan", 100d, DECAY_CONSTANT);
         // experiment on each TimeTraveler
         // a TimeTraveler should always start with 100 years of time travel strength
         // one TimeTraveler implementation should linearly decay (i.e., one year of actual time travel reduces the
         // time traveler's ability by one year)
-        //do{
-        for (int i=0; i<200; i++) {
+        //250 multi-thread to speed up the process
+        for (int i=0; i<250; i++) {
             madScientist.experiment(linearlyTimeTraveler);
         }
-        //}while(!linearlyTimeTraveler.isExhausted());
         // one TimeTraveler implementation should decay double the travel value (i.e., one year of actual time travel reduces
         // the time traveler's ability by two years)
-        //do{
+        //150 multi-thread
         for (int i=0; i<150; i++) {
             madScientist.experiment(doublyTimeTraveler);
         }
-        //}while(!doublyTimeTraveler.isExhausted());
         // one TimeTraveler implementation should have exponential decay with a decay constant inputted by the scientist (see http://en.wikipedia.org/wiki/Exponential_decay)
-        //do{
-        for (int i=0; i<100; i++) {
+        //50 multi-thread
+        for (int i=0; i<50; i++) {
             madScientist.experiment(expolyTimeTraveler);
         }
-        //}while(!expolyTimeTraveler.isExhausted());
         // continue to experiment until all the TimeTraveler's have exhausted their ability to travel
     }
 
@@ -51,7 +50,7 @@ public class MadScientist {
             public void leaped(Time unit, int amount, boolean ahead) {
                 if(!timeTraveler.isExhausted()) {
                     timeTraveler.adjust(unit, amount, ahead);
-                    System.out.printf("TimeTraveler %s traveled %d %s %s, %e remain %b %n ", timeTraveler.getName(), amount, unit.name(), (ahead ? "into the future" : "into the past"), timeTraveler.getRemainingYearsOfTravel(), timeTraveler.isExhausted());
+                    System.out.printf("TimeTraveler %s traveled %d %s %s, %e years remain %n ", timeTraveler.getName(), amount, unit.name(), (ahead ? "into the future" : "into the past"), timeTraveler.getRemainingYearsOfTravel());
                     experiment(timeTraveler);
                 }
                 else {

@@ -96,9 +96,7 @@ public class Faucet {
     }
 
     public int getRandomNextInt() {
-        //Random randomToInnerClass = new Random();
         return random.nextInt(4);
-        //return random;
     }
 
     public Faucet(Random random) {
@@ -117,7 +115,6 @@ public class Faucet {
 
     public Water turnOn() {
         return new Water(this.getFlowLength(), this.getRandomNextInt());
-        //return new Water(5, 6);
     }
 
 }

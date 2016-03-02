@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Faucet {
 
-    private class Drain {
+    private static class Drain {
 
         private void drain(Water water) {
             water.consume();
@@ -23,17 +23,20 @@ public class Faucet {
 
     }
 
-    private class Water {
+    private static class Water {
+
+        private final int randomNextInt;
 
         private final AtomicInteger remaining;
 
-        private Water() {
-            this.remaining = new AtomicInteger(flow.length);
+        private Water(int flowLength, int randomNextInt) {
+            this.remaining = new AtomicInteger(flowLength);
+            this.randomNextInt = randomNextInt;
         }
 
         private int consume() {
             int current = remaining.get();
-            int consumed = ((int) ((1d / (double) (random.nextInt(4) + 1)) * current)) + 1;
+            int consumed = ((int) ((1d / (double) (randomNextInt + 1)) * current)) + 1;
             int remainder = Math.max(0, current - consumed);
             remaining.set(remainder);
             return consumed;
@@ -88,6 +91,16 @@ public class Faucet {
 
     private final Object[] flow;
 
+    public int getFlowLength() {
+        return flow.length;
+    }
+
+    public int getRandomNextInt() {
+        //Random randomToInnerClass = new Random();
+        return random.nextInt(4);
+        //return random;
+    }
+
     public Faucet(Random random) {
         this.random = random;
         this.drain = new Drain();
@@ -103,7 +116,8 @@ public class Faucet {
     }
 
     public Water turnOn() {
-        return new Water();
+        return new Water(this.getFlowLength(), this.getRandomNextInt());
+        //return new Water(5, 6);
     }
 
 }

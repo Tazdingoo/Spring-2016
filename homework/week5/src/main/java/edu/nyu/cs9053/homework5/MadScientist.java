@@ -15,19 +15,52 @@ public class MadScientist {
 
     public static void main(String[] args) {
         // make a MadScientist / TimeMachine and 3 TimeTraveler implementations
+        MadScientist madScientist = new MadScientist(new TimeMachine());
+        LinearlyTimeTraveler linearlyTimeTraveler = new LinearlyTimeTraveler("LinearMan", 100d);
+        DoublyTimeTraveler doublyTimeTraveler = new DoublyTimeTraveler("DoubleMan", 100d);
+        ExpolyTimeTraveler expolyTimeTraveler = new ExpolyTimeTraveler("ExpoMan", 100d, 1d);
         // experiment on each TimeTraveler
         // a TimeTraveler should always start with 100 years of time travel strength
         // one TimeTraveler implementation should linearly decay (i.e., one year of actual time travel reduces the
         // time traveler's ability by one year)
+        //do{
+        for (int i=0; i<200; i++) {
+            madScientist.experiment(linearlyTimeTraveler);
+        }
+        //}while(!linearlyTimeTraveler.isExhausted());
         // one TimeTraveler implementation should decay double the travel value (i.e., one year of actual time travel reduces
         // the time traveler's ability by two years)
+        //do{
+        for (int i=0; i<150; i++) {
+            madScientist.experiment(doublyTimeTraveler);
+        }
+        //}while(!doublyTimeTraveler.isExhausted());
         // one TimeTraveler implementation should have exponential decay with a decay constant inputted by the scientist (see http://en.wikipedia.org/wiki/Exponential_decay)
-
+        //do{
+        for (int i=0; i<100; i++) {
+            madScientist.experiment(expolyTimeTraveler);
+        }
+        //}while(!expolyTimeTraveler.isExhausted());
         // continue to experiment until all the TimeTraveler's have exhausted their ability to travel
     }
 
-    public void experiment(TimeTraveler timeTraveler) {
+    public void experiment(final TimeTraveler timeTraveler) {
         // invoke the time-machine and print how much time has passed using a callback and adjust the time traveler's ability to travel
+        timeMachine.travel(timeTraveler, new TimeTravelCallback(){
+            @Override
+            public void leaped(Time unit, int amount, boolean ahead) {
+                if(!timeTraveler.isExhausted()) {
+                    timeTraveler.adjust(unit, amount, ahead);
+                    System.out.printf("TimeTraveler %s traveled %d %s %s, %e remain %b %n ", timeTraveler.getName(), amount, unit.name(), (ahead ? "into the future" : "into the past"), timeTraveler.getRemainingYearsOfTravel(), timeTraveler.isExhausted());
+                    experiment(timeTraveler);
+                }
+                else {
+                    System.out.printf("TimeTraveler %s is exhausted%n", timeTraveler.getName());
+                    return;
+                }
+            
+            }
+        });
     }
 
 

@@ -23,5 +23,6 @@ public interface TimeTraveler {
      * @param ahead true if the time travel was in the future and false if it were in the past
      */
     void adjust(Time unit, int amount, boolean ahead);
+    boolean isExhausted();
 
 }

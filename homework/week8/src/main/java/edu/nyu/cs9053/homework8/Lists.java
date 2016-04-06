@@ -30,7 +30,7 @@ public class Lists {
     		return false;
     	}
     	for (int index = 0; index < left.size(); index++) {
-    		if (left.get(index) != right.get(index)) {
+    		if (!left.get(index).equals(right.get(index))) {
     			return false;
     		}
     	}

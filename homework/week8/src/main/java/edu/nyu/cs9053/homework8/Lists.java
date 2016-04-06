@@ -20,6 +20,12 @@ public class Lists {
     	if (left == right) {
     		return true;
     	}
+        if (left == null && right == null) {
+            return true;
+        }
+        if ((left == null && right != null) || (left != null && right == null)) {
+            return false;
+        }
     	if (left.size() != right.size()) {
     		return false;
     	}

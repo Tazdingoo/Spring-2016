@@ -1,6 +1,7 @@
 package edu.nyu.cs9053.homework8;
 
 import java.util.List;
+import java.util.Collections;
 
 /**
  * User: blangel
@@ -9,12 +10,27 @@ import java.util.List;
  */
 public class Lists {
 
-    public static List shuffle(List list) {
+    public static <T> List shuffle(List<T> list) {
 	// TODO
+    	Collections.shuffle(list);
+    	return list;
     }
 
-    public static boolean deepEquals(List left, List right) {
-        // TODO
+    public static <T> boolean deepEquals(List<T> left, List<T> right) {
+    	if (left == right) {
+    		return true;
+    	}
+    	if (left.size() != right.size()) {
+    		return false;
+    	}
+    	for (int index = 0; index < left.size(); index++) {
+    		if (left.get(index) != right.get(index)) {
+    			return false;
+    		}
+    	}
+    	return true;
+
+        
     }
 
 }

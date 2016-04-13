@@ -8,13 +8,17 @@ import java.util.concurrent.Semaphore;
  * Time: 2:18 PM
  */
 public class ProducerConsumerFactory {
+    
+    static Semaphore semaphore = new Semaphore(1);
 
     public static Producer createProducer() {
 	// TODO
+    	return new SeltzerProducer(semaphore);
     }
 
     public static Consumer createConsumer() {
 	// TODO
+    	return new SeltzerConsumer(semaphore);
     }
 
 }

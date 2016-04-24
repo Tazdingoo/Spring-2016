@@ -27,7 +27,7 @@ public class Game {
         Board board = new Board(new Boundary(new Coordinates.Default(1, 1), new Coordinates.Default(200, 48)), System.out);
         PlayerChooser playerChooser = new PlayerChooser(board);
         final Player player = playerChooser.getPlayer();
-        ArrayBlockingQueue<InputMove> input = new ArrayBlockingQueue<>(1);
+        final ArrayBlockingQueue<InputMove> input = new ArrayBlockingQueue<>(1);
         final Game game = new Game(GameClient.construct(difficulty), player, new Board(System.out));
         final TerminalInput terminalInput = new TerminalInput(input);
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
